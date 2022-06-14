@@ -34,7 +34,10 @@ const JokesSpotComponent = () => {
   if (isLoading === false && Array.isArray(jokes) && jokes.length > 0) {
     return (
       <Container sx={{ mb: 5 }}>
-        <Grid container spacing={4} sx={{ mt: 5 }}>
+        <Typography variant="h2" color="secondary" sx={{ mt: 2, mb: 3 }}>
+          Jokes
+        </Typography>
+        <Grid container spacing={4}>
           {jokes.map((joke) => (
             <Grid item key={joke?.id} xs={12} sm={12} md={12} lg={6}>
               <JokesCard joke={joke} />
