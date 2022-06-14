@@ -12,6 +12,8 @@ import Grid from "@mui/material/Grid";
 
 import { getJokes } from "../../redux/actions";
 
+import styles from "./style.module.css";
+
 const JokesSpotComponent = () => {
   const dispatch = useDispatch();
 
@@ -25,7 +27,10 @@ const JokesSpotComponent = () => {
 
   if (isLoading === true) {
     return (
-      <Container sx={{ display: "flex", justifyContent: "center" }}>
+      <Container
+        sx={{ display: "flex", justifyContent: "center" }}
+        className={styles.root}
+      >
         <CircularProgress color="secondary" size={100} sx={{ mt: 10 }} />
       </Container>
     );
@@ -33,7 +38,7 @@ const JokesSpotComponent = () => {
 
   if (isLoading === false && Array.isArray(jokes) && jokes.length > 0) {
     return (
-      <Container sx={{ mb: 5 }}>
+      <Container sx={{ mb: 5 }} className={styles.root}>
         <Typography variant="h2" color="secondary" sx={{ mt: 2, mb: 3 }}>
           Jokes
         </Typography>
@@ -49,7 +54,7 @@ const JokesSpotComponent = () => {
   }
 
   return (
-    <Container>
+    <Container className={styles.root}>
       <Typography color="secondary" variant="h1" align="center" sx={{ mt: 10 }}>
         No Jokes Found !
       </Typography>
@@ -84,7 +89,12 @@ const JokesCard = ({ joke }) => {
       />
 
       <CardContent>
-        <Typography>{joke?.joke}</Typography>
+        <Typography
+          dangerouslySetInnerHTML={{ __html: joke?.joke }}
+          variant="body1"
+          style={{ fontSize: 20 }}
+        />
+        {/* {joke?.joke} */}
       </CardContent>
     </Card>
   );
